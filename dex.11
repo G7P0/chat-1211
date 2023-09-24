@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>موقع المحادثة</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .chat-box {
+            width: 400px;
+            height: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid white;
+            overflow-y: scroll;
+        }
+
+        .chat-box input[type="text"] {2
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="user-input">
+        <input type="text" id="username-input" placeholder="أدخل اسم المستخدم">
+        <button onclick="enterChat()">دخول</button>
+    </div>
+
+    <div id="chat-container" style="display: none;">
+        <div class="chat-box">
+            <div id="chat-messages"></div>
+            <input type="text" id="message-input" placeholder="اكتب رسالتك هنا">
+        </div>
+    </div>
+
+    <script>
+        const userInput = document.getElementById('user-input');
+        const usernameInput = document.getElementById('username-input');
+        const chatContainer = document.getElementById('chat-container');
+        const chatMessages = document.getElementById('chat-messages');
+        const messageInput = document.getElementById('message-input');
+
+        function enterChat() {
+            const username = usernameInput.value.trim();
+            if (username === 'dex0') {
+                userInput.style.display = 'none';
+                chatContainer.style.display = 'block';
+            }
+        }
+
+        messageInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && messageInput.value.trim() !== '') {
+                const message = document.createElement('p');
+                message.innerText = messageInput.value.trim();
+                chatMessages.appendChild(message);
+                messageInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
